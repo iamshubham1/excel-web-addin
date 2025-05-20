@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--Created:ce44715c-8c4e-446b-879c-ea9ebe0f09c8-->
+<!-- To learn about the Office Add-ins XML manifest, see https://go.microsoft.com/fwlink/?linkid=2252563. -->
+<OfficeApp 
+          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" 
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" 
+          xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+          xsi:type="TaskPaneApp">
+
+
+  <!-- IMPORTANT! Id must be unique for your add-in, if you reuse this manifest ensure that you change this id to a new GUID. -->
+  <Id>526134cd-b28e-4445-92af-c9c0c5fc4f2b</Id>
+
+  <Version>1.0.0.0</Version>
+  <ProviderName>[Provider name]</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
+  <DisplayName DefaultValue="MyExcelWebAddin_ViaVS" />
+  <Description DefaultValue="MyExcelWebAddin by using Visual Studio."/>
+  <!-- Icon for your add-in. Used on installation screens and the add-ins dialog. -->
+  <IconUrl DefaultValue="http://localhost:55484/Images/Button32x32.png" />
+
+  <SupportUrl DefaultValue="http://www.contoso.com" />
+  <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
+  <AppDomains>
+    <AppDomain>http://localhost:55484</AppDomain>
+    
+  </AppDomains>
+  
+
+  <Hosts>
+    <Host Name="Workbook" />
+  </Hosts>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="http://localhost:55484/Home.html" />
+  </DefaultSettings>
+  <!-- End TaskPane Mode integration.  -->
+
+  <Permissions>ReadWriteDocument</Permissions>
+
+  <!-- Begin Add-in Commands Mode integration. -->
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Workbook">
+		  <DesktopFormFactor>
+			  <ExtensionPoint xsi:type="PrimaryCommandSurface">
+				  <CustomTab id="MyCustomTab">
+					  <Group id="MyGroup">
+						  <Label resid="customGroupLabel" />
+
+						  <Icon>
+							  <bt:Image size="16" resid="icon16" />
+							  <bt:Image size="32" resid="icon32" />
+							  <bt:Image size="80" resid="icon80" />
+						  </Icon>
+						  
+						  <Control xsi:type="Button" id="MyButton">
+							  <Label resid="customButtonLabel" />
+							  <Supertip>
+								  <Title resid="customButtonTitle" />
+								  <Description resid="customButtonDescription" />
+							  </Supertip>
+							  <Icon>
+								  <bt:Image size="16" resid="icon16" />
+								  <bt:Image size="32" resid="icon32" />
+								  <bt:Image size="80" resid="icon80" />
+							  </Icon>
+							  <Action xsi:type="ShowTaskpane">
+								  <SourceLocation resid="taskpaneUrl" />
+							  </Action>
+						  </Control>
+					  </Group>
+					  <Label resid="customTabLabel"/>
+				  </CustomTab>
+			  </ExtensionPoint>
+		  </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="icon16" DefaultValue="http://localhost:55484/Images/Button16x16.png"/>
+        <bt:Image id="icon32" DefaultValue="http://localhost:55484/Images/Button32x32.png"/>
+        <bt:Image id="icon80" DefaultValue="http://localhost:55484/Images/Button80x80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="taskpaneUrl" DefaultValue="http://localhost:55484/Home.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="customTabLabel" DefaultValue="TESTING WEB"/>
+        <bt:String id="customGroupLabel" DefaultValue="My Group"/>
+        <bt:String id="customButtonLabel" DefaultValue="Click Me"/>
+        <bt:String id="customButtonTitle" DefaultValue="Open Pane"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="customButtonDescription" DefaultValue="Click to open the custom task pane"/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+
+</OfficeApp>
